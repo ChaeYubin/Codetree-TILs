@@ -27,8 +27,6 @@ public class Main {
 
         int diff = day2 - day1;
 
-        // System.out.println(String.format("day1: %d, day2: %d, diff: %d", day1, day2, diff));
-
         int dayIndex = 0;
 
         for (int i = 0; i < day.length; i++) {
