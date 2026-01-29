@@ -11,7 +11,7 @@ public class Main {
         int time1 = dayToMinutes(11) + hourToMinutes(11) + 11;
         int time2 = dayToMinutes(A) + hourToMinutes(B) + C;
 
-        System.out.println(time2 - time1);
+        System.out.println(time2 - time1 < 0 ? -1 : time2 - time1);
     }
 
     public static int dayToMinutes(int day) {
