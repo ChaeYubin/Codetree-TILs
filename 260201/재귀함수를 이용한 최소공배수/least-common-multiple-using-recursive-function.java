@@ -20,6 +20,7 @@ public class Main {
     }
 
     public static int getLCM(int n, int[] arr) {
+        if (n == 1) return arr[0];
         if (n == 2) return LCM(arr[0], arr[1]);
 
         int[] temp = new int[n - 1];
