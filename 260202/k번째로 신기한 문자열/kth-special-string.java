@@ -12,7 +12,7 @@ public class Main {
             words[i] = sc.next();
         }
 
-        String[] startWithTWords = Arrays.stream(words).filter(w -> w.contains(t)).toArray(String[]::new);
+        String[] startWithTWords = Arrays.stream(words).filter(w -> w.contains(t) && w.startsWith(t)).toArray(String[]::new);
 
         Arrays.sort(startWithTWords);
 
