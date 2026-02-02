@@ -12,12 +12,12 @@ public class Main {
             if (c == '(') {
                 stack.push(c);
             } else {
-                if (stack.peek() == '(') {
-                    stack.pop();
-                } else {
+                if (stack.isEmpty()) {
                     System.out.println("No");
                     return;
-                }
+                } 
+
+                stack.pop();
             }
         }
 
