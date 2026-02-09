@@ -21,7 +21,7 @@ public class Main {
         
         int gold = 0;
 
-        for (int k = 0; k <= N - 1; k++) {
+        for (int k = 0; k <= N; k++) {
             int size = queue.size();
 
             // 한 라운드씩 처리
