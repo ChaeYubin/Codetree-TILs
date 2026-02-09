@@ -43,7 +43,7 @@ public class Main {
             
             // 채굴에 드는 비용 계산, 금 개수 최댓값 갱신
             int cost = (k * k) + ((k + 1) * (k + 1));
-            if (gold * M > cost) {
+            if (gold * M >= cost) {
                 maxGold = Math.max(maxGold, gold);
             }
         }
