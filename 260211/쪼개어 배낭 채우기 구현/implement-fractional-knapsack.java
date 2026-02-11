@@ -40,7 +40,7 @@ public class Main {
         double maxValues = 0;
 
         int index = 0;
-        while (m > 0) {
+        while (m > 0 && index < n) {
             Jewerly j = list.get(index);
 
             if (m >= j.weight) {
