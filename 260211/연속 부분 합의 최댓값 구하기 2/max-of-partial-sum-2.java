@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.lang.Math;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -8,17 +10,19 @@ public class Main {
             a[i] = sc.nextInt();
         }
 
-        int max = 0;
+        int maxSum = 0;
+        int sum = 0;
 
         for (int i = 0; i < N; i++) {
-            // max: 지나온 수들까지의 합
-            if (max < 0) {
-                max = 0;
+            if (sum < 0) {
+                sum = 0;
             } 
             
-            max += a[i];
+            sum += a[i];
+
+            maxSum = Math.max(maxSum, sum);
         }
 
-        System.out.println(max);
+        System.out.println(maxSum);
     }
 }
