@@ -37,7 +37,7 @@ public class Main {
             int nx = x + dx[d];
             int ny = y + dy[d];
 
-            if (nx < 0 || nx >= n || ny < 0 || ny >= n || visited[nx][ny] || grid[nx][ny] == 0) continue;
+            if (nx < 0 || nx >= n || ny < 0 || ny >= m || visited[nx][ny] || grid[nx][ny] == 0) continue;
 
             visited[nx][ny] = true;
             dfs(nx, ny);
