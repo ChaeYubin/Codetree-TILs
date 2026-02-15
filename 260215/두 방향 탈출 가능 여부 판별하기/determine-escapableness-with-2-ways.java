@@ -27,7 +27,7 @@ public class Main {
 
     static void dfs(int x, int y) {
         if (canEscape) return;
-        
+
         if (x == n - 1 && y == n - 1) {
             canEscape = true;
             return;
@@ -41,6 +41,7 @@ public class Main {
 
             visited[nx][ny] = true;
             dfs(nx, ny);
+            visited[nx][ny] = false;
         }
     }
 }
