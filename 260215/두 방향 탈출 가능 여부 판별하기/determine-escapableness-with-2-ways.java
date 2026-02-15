@@ -28,7 +28,7 @@ public class Main {
     static void dfs(int x, int y) {
         if (canEscape) return;
 
-        if (x == n - 1 && y == n - 1) {
+        if (x == n - 1 && y == m - 1) {
             canEscape = true;
             return;
         }
