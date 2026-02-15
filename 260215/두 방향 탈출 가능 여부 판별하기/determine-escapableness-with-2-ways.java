@@ -41,7 +41,6 @@ public class Main {
 
             visited[nx][ny] = true;
             dfs(nx, ny);
-            visited[nx][ny] = false;
         }
     }
 }
