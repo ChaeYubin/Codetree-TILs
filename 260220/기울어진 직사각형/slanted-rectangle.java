@@ -25,29 +25,30 @@ public class Main {
 
         max = 0;
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                dfs(i, j, i, j, 0, grid[i][j], 0);
+        for (int i = 2; i < N; i++) {
+            for (int j = 1; j < N; j++) {
+                dfs(i, j, i, j, 0, grid[i][j]);
             }
         }
 
         System.out.println(max);
     }
 
-    static void dfs(int startX, int startY, int curX, int curY, int prevD, int sum, int count) {
+    static void dfs(int startX, int startY, int curX, int curY, int prevD, int sum) {
         for (int i = prevD; i < 4; i++) {
             int nx = curX + DIR[prevD][0];
             int ny = curY + DIR[prevD][1];
 
             if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
+            // System.out.println("nx: " + nx + ", ny: " + ny);
 
             // 원점으로 돌아온 경우
-            if (nx == startX && ny == startY && count > 2) {
+            if (nx == startX && ny == startY) {
                 max = Math.max(max, sum);
                 return;
             }
 
-            dfs(startX, startY, nx, ny, i, sum + grid[nx][ny], count + 1);
+            dfs(startX, startY, nx, ny, i, sum + grid[nx][ny]);
         }
     }
 
