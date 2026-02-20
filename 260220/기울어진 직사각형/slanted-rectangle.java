@@ -36,8 +36,8 @@ public class Main {
 
     static void dfs(int startX, int startY, int curX, int curY, int prevD, int sum) {
         for (int i = prevD; i < 4; i++) {
-            int nx = curX + DIR[prevD][0];
-            int ny = curY + DIR[prevD][1];
+            int nx = curX + DIR[i][0];
+            int ny = curY + DIR[i][1];
 
             if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
 
