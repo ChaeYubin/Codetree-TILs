@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamTokenizer;
+import java.lang.Math;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,30 +26,55 @@ public class Main {
 
         max = 0;
 
-        for (int i = 2; i < N; i++) {
-            for (int j = 1; j < N - 1; j++) {
-                dfs(i, j, i, j, 0, grid[i][j]);
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                // 시작점: (i, j)
+
+                for (int a = 1; a < N - 1; a++) {
+                    for (int b = 1; b < N - 1; b++) {
+                        // a, b: 변의 길이
+                        if (isPossible(i, j, a, b)) {
+                            max = Math.max(max, calculateMax(i, j, a, b));
+                        }
+                    }
+                }
             }
         }
 
         System.out.println(max);
     }
 
-    static void dfs(int startX, int startY, int curX, int curY, int prevD, int sum) {
-        for (int i = prevD; i < 4; i++) {
-            int nx = curX + DIR[i][0];
-            int ny = curY + DIR[i][1];
+    static int calculateMax(int x, int y, int len1, int len2) {
+        int sum = grid[x][y];
 
-            if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
+        for (int i = 0; i < 4; i++) {
+            int len = (i % 2) == 0 ? len1 : len2;
 
-            // 원점으로 돌아온 경우
-            if (nx == startX && ny == startY) {
-                max = Math.max(max, sum);
-                return;
+            for (int j = 0; j < len; j++) {
+                x += DIR[i][0];
+                y += DIR[i][1];
+
+                sum += grid[x][y];
             }
-
-            dfs(startX, startY, nx, ny, i, sum + grid[nx][ny]);
         }
+
+        sum -= grid[x][y];  // 시작점 두 번 더해지는거 보정 
+
+        return sum;
+    }
+
+    static boolean isPossible(int x, int y, int len1, int len2) {
+        // 경계값 확인
+        for (int i = 0; i < 3; i++) {
+            int len = (i % 2) == 0 ? len1 : len2;
+
+            x += DIR[i][0] * len;
+            y += DIR[i][1] * len;
+
+            if (x < 0 || x >= N || y < 0 || y >= N) return false;
+        }
+
+        return true;
     }
 
     static int nextInt() throws IOException {
