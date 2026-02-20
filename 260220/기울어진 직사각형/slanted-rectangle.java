@@ -45,7 +45,7 @@ public class Main {
     }
 
     static int calculateMax(int x, int y, int len1, int len2) {
-        int sum = grid[x][y];
+        int sum = 0;
 
         for (int i = 0; i < 4; i++) {
             int len = (i % 2) == 0 ? len1 : len2;
@@ -57,8 +57,6 @@ public class Main {
                 sum += grid[x][y];
             }
         }
-
-        sum -= grid[x][y];  // 시작점 두 번 더해지는거 보정 
 
         return sum;
     }
