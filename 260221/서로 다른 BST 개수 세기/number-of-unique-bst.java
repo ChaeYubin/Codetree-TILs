@@ -11,7 +11,7 @@ public class Main {
         dp[2] = 2;
 
         for (int i = 3; i <= n; i++) {
-            for (int j = 0; j <= n - 1; j++) {
+            for (int j = 0; j <= i - 1; j++) {
                 dp[i] += dp[j] * dp[i - j - 1];
             }
         }
