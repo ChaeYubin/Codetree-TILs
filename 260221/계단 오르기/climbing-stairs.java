@@ -7,13 +7,13 @@ public class Main {
 
         // dp[i]: i층 높이에 올라오는 서로 다른 방법의 수
         // => (i - 2)층에서 2계단을 올라오는 경우 + (i - 3)층에서 3계단을 올라오는 경우
-        int[] dp = new int[n + 1];
+        int[] dp = new int[1001];
 
-        dp[0] = 1;
         dp[1] = 0;
         dp[2] = 1;
+        dp[3] = 1;
 
-        for (int i = 3; i <= n; i++) {
+        for (int i = 4; i <= n; i++) {
             dp[i] = dp[i - 2] + dp[i - 3];
         }
 
