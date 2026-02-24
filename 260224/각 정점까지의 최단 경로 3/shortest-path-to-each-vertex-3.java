@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.lang.Math;
 
 public class Main {
+    static int MAX = (int) 1e9;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -19,7 +21,7 @@ public class Main {
         }
 
         int[] dist = new int[n + 1];
-        Arrays.fill(dist, (int) 1e9);
+        Arrays.fill(dist, MAX);
 
         boolean[] visited = new boolean[n + 1];
 
@@ -51,7 +53,7 @@ public class Main {
         }
 
         for (int i = 2; i <= n; i++) {
-            System.out.println(dist[i] == Integer.MAX_VALUE ? -1 : dist[i]);
+            System.out.println(dist[i] == MAX ? -1 : dist[i]);
         }
     }
 }
