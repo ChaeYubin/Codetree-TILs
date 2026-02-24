@@ -19,7 +19,7 @@ public class Main {
         }
 
         int[] dist = new int[n + 1];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+        Arrays.fill(dist, (int) 1e9);
 
         boolean[] visited = new boolean[n + 1];
 
