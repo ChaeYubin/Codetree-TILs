@@ -44,11 +44,11 @@ public class Main {
             graph.get(v).add(new Node(u, w));
         }
 
-        int[] dist = new int[n + 1];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+        int[] cost = new int[n + 1];
+        Arrays.fill(cost, Integer.MAX_VALUE);
 
         Queue<Node> pq = new PriorityQueue<>();
-        dist[k] = 0;
+        cost[k] = 0;
         pq.offer(new Node(k, 0));
 
         while (!pq.isEmpty()) {
@@ -56,18 +56,18 @@ public class Main {
             // curNode.to: 방문할 노드
             Node curNode = pq.poll();  
 
-            // curNode의 비용이 이미 기록되어 있는 dist 값보다 크다면 skip (중복 방문 방지)
-            if (dist[curNode.to] < curNode.cost) {
+            // curNode의 비용이 이미 기록되어 있는 cost 값보다 크다면 skip (중복 방문 방지)
+            if (cost[curNode.to] < curNode.cost) {
                 continue;
 			}
 
             // 현재까지의 비용 + 다음 방문에 필요한 비용을
             // 기존에 저장된 값과 비교해서 갱신 
             for (Node nextNode : graph.get(curNode.to)) {
-                int cost = dist[curNode.to] + nextNode.cost;
+                int cost = cost[curNode.to] + nextNode.cost;
 
-                if (dist[nextNode.to] > cost) {
-                    dist[nextNode.to] = cost;
+                if (cost[nextNode.to] > cost) {
+                    cost[nextNode.to] = cost;
                     // 최단 경로가 되는 노드는 큐에 추가
                     pq.offer(nextNode);
                 }
@@ -75,7 +75,7 @@ public class Main {
         }
         
         for (int i = 1; i <= n; i++) {
-            System.out.println(dist[i] == Integer.MAX_VALUE ? -1 : dist[i]);
+            System.out.println(cost[i] == Integer.MAX_VALUE ? -1 : cost[i]);
         }
 
     }
