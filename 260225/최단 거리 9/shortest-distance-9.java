@@ -74,7 +74,7 @@ public class Main {
             x = path[x];
         }
 
-        System.out.println(paths.size() - 1);
+        System.out.println(dist[b]);
 
         for (int i = paths.size() - 1; i >= 0; i--) {
             System.out.print(paths.get(i) + " ");
