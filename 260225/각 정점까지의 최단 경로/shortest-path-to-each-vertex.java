@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.PriorityQueue;
@@ -64,10 +63,10 @@ public class Main {
             // 현재까지의 비용 + 다음 방문에 필요한 비용을
             // 기존에 저장된 값과 비교해서 갱신 
             for (Node nextNode : graph.get(curNode.to)) {
-                int cost = cost[curNode.to] + nextNode.cost;
+                int acc = cost[curNode.to] + nextNode.cost;
 
-                if (cost[nextNode.to] > cost) {
-                    cost[nextNode.to] = cost;
+                if (cost[nextNode.to] > acc) {
+                    cost[nextNode.to] = acc;
                     // 최단 경로가 되는 노드는 큐에 추가
                     pq.offer(nextNode);
                 }
