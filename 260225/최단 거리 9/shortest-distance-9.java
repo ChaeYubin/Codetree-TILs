@@ -58,8 +58,8 @@ public class Main {
                 if (dist[nextNode.to] > acc) {
                     dist[nextNode.to] = acc;
                     path[nextNode.to] = curNode.to;
-
-                    pq.offer(nextNode);
+                    
+                    pq.offer(new Node(nextNode.to, acc));
                 }
             }
         }
