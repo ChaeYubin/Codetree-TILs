@@ -12,11 +12,18 @@ public class Main {
                 grid[i][j] = sc.nextInt();
 
         int happyNumbers = 0;
-        
+
+        // 각 행의 수열 확인
         for (int i = 0; i < n; i++) {
             int count = 1;
+            
+            if (count >= m) {
+                happyNumbers++;
+                continue;
+            }
+
             for (int j = 1; j < n; j++) {
-                if (grid[i][j - 1] == grid[i][j]) {
+                if (grid[j - 1][i] == grid[j][i]) {
                     count++;
                 } else {
                     count = 1;
@@ -24,15 +31,22 @@ public class Main {
 
                 if (count >= m) {
                     happyNumbers++;
-                    j = n;  // j for문 skip
+                    j = n;  
                 }
             }
         }
-
+        
+        // 각 열의 수열 확인
         for (int i = 0; i < n; i++) {
             int count = 1;
+
+            if (count >= m) {
+                happyNumbers++;
+                continue;
+            }
+
             for (int j = 1; j < n; j++) {
-                if (grid[j - 1][i] == grid[j][i]) {
+                if (grid[i][j - 1] == grid[i][j]) {
                     count++;
                 } else {
                     count = 1;
