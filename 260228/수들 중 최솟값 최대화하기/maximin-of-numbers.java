@@ -27,7 +27,6 @@ public class Main {
     static void dfs(int row, int min) {
         if (row == n) {
             max = Math.max(max, min);
-            System.out.println();
             return;
         }
 
