@@ -26,6 +26,8 @@ public class Main {
         }
 
         // 집의 높이가 K보다 큰 경우를 안전 영역으로 카운팅
+        maxSafeZoneK = 1;
+        
         for (int k = 1; k < maxHouseHeight; k++) {
             int safeZoneCount = 0;
             int[][] tempGrid = new int[n][m];
