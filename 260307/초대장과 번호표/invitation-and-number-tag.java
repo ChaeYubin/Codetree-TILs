@@ -55,7 +55,11 @@ public class Main {
                 // 초대받지 않은 인원이 한명밖에 없다면 초대합니다.
                 if(groups[gNum].size() == 1) {
                     // set은 값을 가져오는 것이 불가능 -> 리스트로 변환해서 가져오기
-                    int pNum = new ArrayList<>(groups[gNum]).get(0);
+                    // int pNum = new ArrayList<>(groups[gNum]).get(0);
+                    
+                    // 또는 이터레이터 사용
+                    int pNum = groups[gNum].iterator().next();
+
                     if(!invited[pNum]) {
                         invited[pNum] = true;
                         q.add(pNum);
