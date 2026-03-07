@@ -1,51 +1,70 @@
 import java.util.Scanner;
 import java.util.HashSet;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class Main {
+    public static final int MAX_G = 250_000;
+    public static final int MAX_N = 100_000;
+    
+    // 변수 선언
+    public static int n, g;
+    public static boolean[] invited = new boolean[MAX_N];
+    // 각 그룹마다 초대장을 받지 못한 사람들을 관리해줍니다.
+    public static HashSet<Integer>[] groups = new HashSet[MAX_G];
+    // 각 사람이 어떤 그룹에 속하는지를 관리해줍니다.
+    public static ArrayList<Integer>[] peopleGroups = new ArrayList[MAX_N];
+    public static Queue<Integer> q = new LinkedList<>();
+    public static int ans;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int n = sc.nextInt();
-        int g = sc.nextInt();
+        n = sc.nextInt();
+        g = sc.nextInt();
 
-        HashSet<Integer>[] group = new HashSet[g];
-        for (int i = 0; i < g; i++) {
-            group[i] = new HashSet<>();
+        for(int i = 0; i < n; i++)
+            peopleGroups[i] = new ArrayList<>();
 
-            int groupSize = sc.nextInt();
-            for (int j = 0; j < groupSize; j++) {
-                group[i].add(sc.nextInt());
+        for(int i = 0; i < g; i++)
+            groups[i] = new HashSet<>();
+
+        for(int i = 0; i < g; i++) {
+            int s = sc.nextInt();
+            for(int j = 0; j < s; j++) {
+                int x = sc.nextInt(); x--;
+                groups[i].add(x);
+                peopleGroups[x].add(i);
             }
         }
 
-        // 확실하게 초대장을 받는 사람
-        HashSet<Integer> mustInvited = new HashSet<>();
-        mustInvited.add(1);
+        q.add(0);
+        invited[0] = true;
+        while(!q.isEmpty()) {
+            int x = q.poll();
+            ans++;
 
-        // 1을 제외한 인원의 수를 기준으로 오름차순 정렬
-        Arrays.sort(group, (h1, h2) -> {
-            int count1 = h1.size() - (h1.contains(1) ? 1 : 0);
-            int count2 = h2.size() - (h2.contains(1) ? 1 : 0);
+            // x가 들어있는 그룹에서 x를 지웁니다.
+            // hashset에는 그룹에서 초대받지 않은 인원만을 남깁니다.
+            for(int i = 0; i < peopleGroups[x].size(); i++) {
+                int gNum = peopleGroups[x].get(i);
 
-            return count1 - count2;
-        });
-
-        for (HashSet<Integer> curGroup : group) {
-            int count = 0;  // 현재 그룹 내에서 확실하게 초대장을 받는 사람의 수
-
-            for (int invited : mustInvited) {
-                if (curGroup.contains(invited)) count++;
-            }
-
-            // 만약 한 명을 제외하고 모두 초대장을 받는다면 나머지 한 명도 받아야 함
-            if (count == curGroup.size() - 1) {
-                for (int num : curGroup) {
-                    mustInvited.add(num);
+                // 해당 그룹에서 x를 지웁니다.
+                groups[gNum].remove(x);
+                // 초대받지 않은 인원이 한명밖에 없다면 초대합니다.
+                if(groups[gNum].size() == 1) {
+                    // set은 값을 가져오는 것이 불가능 -> 리스트로 변환해서 가져오기
+                    int pNum = new ArrayList<>(groups[gNum]).get(0);
+                    if(!invited[pNum]) {
+                        invited[pNum] = true;
+                        q.add(pNum);
+                    }
                 }
             }
         }
 
-        System.out.println(mustInvited.size());
+        // 초대장을 받는 인원을 출력합니다.
+        System.out.print(ans);
     }
 }
