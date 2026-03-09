@@ -19,14 +19,17 @@ public class Main {
             arr[i] = sc.nextInt();
         }
 
-        Arrays.sort(arr);  // 오름차순 정렬
         int result = 0;
 
+        // 최선의 자리 선택: ai다 같거나 작은 최대 위치에 자리 배치를 하는 것
         for (int i = 0; i < n; i++) {
             if (seat.floor(arr[i]) != null) {
-                result++;
                 int num = seat.floor(arr[i]);
                 seat.remove(num);
+                
+                result++;
+            } else {
+                break;
             }
         }
 
