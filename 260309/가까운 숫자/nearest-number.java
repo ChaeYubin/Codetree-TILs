@@ -10,17 +10,23 @@ public class Main {
         TreeSet<Integer> set = new TreeSet<>();
         set.add(0);
 
+        int minDiff = Integer.MAX_VALUE;
+
         for (int i = 0; i < n; i++) {
-            set.add(sc.nextInt());
-            
-            int minDiff = Integer.MAX_VALUE;
+            int num = sc.nextInt();
+            set.add(num);
 
-            for (int num : set) {
-                Integer num2 = set.higher(num);
-
-                if (num2 != null) {
-                    minDiff = Math.min(minDiff, Math.abs(num - num2));
+            if (set.size() == 2) {
+                minDiff = Math.abs(set.first() - set.last());
+            } else {
+                if (set.lower(num) != null) {
+                    minDiff = Math.min(minDiff, Math.abs(num - set.lower(num)));
                 }
+
+                if (set.higher(num) != null) {
+                    minDiff = Math.min(minDiff, Math.abs(num - set.higher(num)));
+                }
+                
             }
 
             System.out.println(minDiff);
