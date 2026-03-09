@@ -29,9 +29,9 @@ public class Main {
             }
 
             // x보다 m 이상 더 작으면서 가장 큰 값
-            // x - r >= m을 만족하는 최대 r ==> x - m >= r을 만족하는 최대 r 구하기
+            // x - r >= m을 만족하는 최대 r ==> r <= x - m을 만족하는 최대 r 구하기
             if (set.floor(x - m) != null) {
-                answer = Math.min(answer, set.floor(x - m) + m);
+                answer = Math.min(answer, x - set.floor(x - m));
             }
         }
 
