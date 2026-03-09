@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Main {
-    class Pair implements Comparable<Pair> {
+    static class Pair implements Comparable<Pair> {
         int x, y;
 
         Pair(int x, int y) {
@@ -11,7 +11,7 @@ public class Main {
         }
 
         @Override
-        int compareTo(Pair o) {
+        public int compareTo(Pair o) {
             if (this.x == o.x) {
                 return this.y - o.y; // 오름차순 정렬(x, y는 모두 양수)
             }
@@ -37,7 +37,7 @@ public class Main {
             int y = sc.nextInt();
 
             Pair result = treeSet.lower(new Pair(x, y));
-            System.out.println(result == null ? "-1 -1" + result.x + " " + result.y);
+            System.out.println(result == null ? "-1 -1" : result.x + " " + result.y);
         }
     }
 }
