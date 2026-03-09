@@ -36,7 +36,7 @@ public class Main {
             int x = sc.nextInt();
             int y = sc.nextInt();
 
-            Pair result = treeSet.lower(new Pair(x, y));
+            Pair result = treeSet.ceiling(new Pair(x, y));
             System.out.println(result == null ? "-1 -1" : result.x + " " + result.y);
         }
     }
