@@ -38,8 +38,6 @@ public class Main {
         int ra = find(a);
         int rb = find(b);
 
-        if (ra != rb) {
-            uf[b] = ra;
-        }
+        uf[b] = ra;
     }
 }
